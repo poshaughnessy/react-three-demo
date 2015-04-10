@@ -7,6 +7,7 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use( '/bower_components', express.static('bower_components') );
 app.use( '/dist', express.static('dist') );
 
 app.get('/', (req, res) => {
