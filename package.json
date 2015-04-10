@@ -1,0 +1,36 @@
+{
+  "name": "react-three-test",
+  "version": "0.0.1",
+  "description": "Demo of react-three",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poshaughnessy/react-three-test.git"
+  },
+  "author": "Peter O'Shaughnessy <peter.oshaughnessy@gmail.com> (http://www.peteroshaughnessy.com)",
+  "license": "MIT",
+  "scripts": {
+    "start": "node runServer"
+  },
+  "devDependencies": {
+    "babelify": "~5.0.4",
+    "browser-pack": "~4.0.1",
+    "browserify": "~9.0.3",
+    "deps-sort": "~1.3.5",
+    "gulp": "~3.8.11",
+    "gulp-babel": "~4.0.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "~1.3.3",
+    "gulp-sourcemaps": "~1.5.1",
+    "gulp-uglify": "^1.1.0",
+    "module-deps": "~3.7.3"
+  },
+  "dependencies": {
+    "babel": "^4.7.16",
+    "express": "~4.12.3",
+    "react": "~0.13.1"
+  },
+  "engines": {
+    "node": "0.12.x"
+  }
+}
