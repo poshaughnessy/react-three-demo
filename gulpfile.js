@@ -15,7 +15,6 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    uglify = require('gulp-uglify'),
     babelify = require('babelify'),
     browserify = require('browserify'),
     fs = require('fs'),
@@ -26,25 +25,24 @@ var gulp = require('gulp'),
  */
 gulp.task('babel', function() {
 
-    return browserify('./src/main.js', { debug: false })
-        .transform(babelify)
+    /**
+     * ,
+     shim: {
+                'three': { exports: 'global:THREE' },
+                'bower_components/threejs/examples/js/loaders/ColladaLoader.js': { depends: {'three': null}, exports: 'global:THREE.ColladaLoader' }
+            }
+     */
+    return browserify('./src/main.js', {
+            debug: false
+        })
+        //.transform('browserify-shim')
+        .transform(babelify.configure({
+            extensions: ['.js']//,
+            //ignore: 'bower_components'
+        }))
         .bundle()
         .on('error', function (err) { console.log('Babelify error : ' + err.message); })
         .pipe(fs.createWriteStream('./dist/bundle.js'));
-
-});
-
-/**
- * Minify the bundle JS. Currently unused but would be required for production!
- */
-gulp.task('uglify', ['babel'], function() {
-
-    return gulp.src('./dist/bundle.js')
-        .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(rename('bundle.min.js'))
-        .pipe(gulp.dest('./dist'));
 
 });
 
