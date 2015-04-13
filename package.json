@@ -1,5 +1,5 @@
 {
-  "name": "react-three-test",
+  "name": "react-three-demo",
   "version": "0.0.1",
   "description": "Demo of react-three",
   "repository": {
@@ -39,7 +39,7 @@
   "dependencies": {
     "babel": "^4.7.16",
     "express": "~4.12.3",
-    "react": "~0.13.0",
+    "react": "~0.12.2",
     "three": "^0.70.0"
   },
   "engines": {
