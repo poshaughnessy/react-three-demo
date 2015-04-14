@@ -88,7 +88,7 @@ function browserifyBuild(watch) {
     function rebundle() {
         return bundler.bundle()
             .on('error', function(e) {
-                util.log('Browserify Error', e);
+                gutil.log('Browserify Error', e);
             })
             .pipe(source('bundle.js'))
             .pipe(buffer())
