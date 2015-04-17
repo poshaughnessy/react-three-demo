@@ -1,17 +1,36 @@
 import React from 'react';
 import ReactTHREE from 'react-three';
+//import RobotComponent from './robot';
 
-// TODO put ES6 style back when react-three is upgraded to React v0.13 (https://github.com/Izzimach/react-three/issues/16)
-//class AppComponent extends React.Component {
-let AppComponent = React.createClass({
+class AppComponent extends React.Component {
+
     render() {
-        return (
-            <div>
-                <h1>Hello</h1>
-                TODO ReactTHREE.Object3D()
-            </div>
+
+        let CameraElement = React.createElement(
+            ReactTHREE.PerspectiveCamera,   // type
+            {                               // config
+                name: 'camera',
+                fov: 75,
+                aspect: 800/600,
+                near: 1,
+                far: 1000,
+                position: new THREE.Vector3(0, 0, 600),
+                lookat: new THREE.Vector3(0, 0, 0)
+            }
+        );
+
+        return React.createElement(
+            ReactTHREE.Scene,       // type
+            {                       // config
+                width: 800,
+                height: 600,
+                camera: 'camera'
+            },
+            CameraElement//,          // children
+            //React.createElement(RobotComponent)     // TODO add props data
         )
     }
-});
+
+};
 
 export default AppComponent;
