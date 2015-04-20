@@ -9,6 +9,7 @@ app.set('view engine', 'ejs');
 
 app.use( '/bower_components', express.static('bower_components') );
 app.use( '/dist', express.static('dist') );
+app.use( '/models', express.static('models') );
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));

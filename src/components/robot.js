@@ -1,32 +1,51 @@
 import React from 'react';
 import ReactTHREE from 'react-three';
 
-// TODO put ES6 style back when react-three is upgraded to React v0.13 (https://github.com/Izzimach/react-three/issues/16)
-//class AppComponent extends React.Component {
-let AppComponent = React.createClass({
+class RobotComponent extends React.Component {
 
-    displayName: 'Robot',
+    constructor() {
 
-    propTypes: {
-        position: React.PropTypes.instanceOf(THREE.Vector3)
-    },
+        this.displayName = 'Robot';
 
-    render: function() {
+        let colladaLoader = new THREE.ColladaLoader();
 
-        // TODO move out of render?
-        colladaLoader.load('/models/robby/RobbyTheRobot_FanArt.dae', function() {
+        let self = this;
 
+        colladaLoader.load('/models/robby/RobbyTheRobot_FanArt.dae', function( geometry ) {
+
+            console.log('self', self);
+            console.log('geometry', geometry);
+
+            self.state = {geometry: geometry};
         });
 
-        return React.createElement(
-            ReactTHREE.Mesh,
-            {
-                position: this.props.position || new THREE.Vector3(0, 0, 0)
-                //geometry: ,
-                //material:
-            }
-
-        )
     }
 
-});
+    render() {
+
+        if( this.state ) {
+
+            return React.createElement(
+                ReactTHREE.Mesh,
+                {
+                    position: this.props.position || new THREE.Vector3(0, 0, 0),
+                    geometry: this.state ? this.state.geometry : null,
+                    material: new THREE.MeshFaceMaterial()
+                }
+
+            );
+
+        } else {
+            return null;
+        }
+
+
+    }
+
+}
+
+RobotComponent.propTypes = {
+    position: React.PropTypes.instanceOf(THREE.Vector3)
+};
+
+export default RobotComponent;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTHREE from 'react-three';
-//import RobotComponent from './robot';
+import RobotComponent from './robot';
 
 class AppComponent extends React.Component {
 
@@ -26,11 +26,11 @@ class AppComponent extends React.Component {
                 height: 600,
                 camera: 'camera'
             },
-            CameraElement//,          // children
-            //React.createElement(RobotComponent)     // TODO add props data
+            CameraElement,          // children
+            React.createElement(RobotComponent)     // TODO add props data
         )
     }
 
-};
+}
 
 export default AppComponent;
