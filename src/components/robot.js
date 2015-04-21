@@ -9,24 +9,20 @@ class RobotComponent extends React.Component {
 
         this.displayName = 'Robot';
 
-        this.state = {
-            model: null
-        };
-
         // TODO put back when I figure this out
         /*
+        /*
+        this.state = {
+            scene: null
+        };
+
         let colladaLoader = new THREE.ColladaLoader();
 
-        let self = this;
+        colladaLoader.load('/models/robby/RobbyTheRobot_FanArt.dae', collada => {
 
-        colladaLoader.load('/models/robby/RobbyTheRobot_FanArt.dae', function( collada ) {
-
-            console.log('self', self);
             console.log('result', collada);
 
             self.setState({scene: collada.scene});
-
-            console.log('self.props', self.props);
 
             self.props.onLoad();
         });
@@ -50,7 +46,7 @@ class RobotComponent extends React.Component {
 
         // TODO put back when I figure this out
         /*
-        if( this.state.model ) {
+        if( this.state.scene ) {
 
             return React.createElement(
                 ReactTHREE.Mesh,

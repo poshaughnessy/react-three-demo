@@ -8,11 +8,13 @@ class AppComponent extends React.Component {
 
         super(props);
 
+        /*
         this.state = {
             robotLoaded: false
         };
 
         this.onRobotLoaded.bind(this);
+        */
 
     }
 
@@ -38,7 +40,7 @@ class AppComponent extends React.Component {
             RobotComponent,
             {
                 onLoad: this.onRobotLoaded.bind(this),
-                position: this.props.robotPosition ? this.props.robotPosition : new THREE.Vector3(0,0,0)
+                position: this.props.robotPosition || new THREE.Vector3(0,0,0)
             }
         );
 
@@ -56,9 +58,11 @@ class AppComponent extends React.Component {
         )
     }
 
+    /*
     onRobotLoaded() {
         this.setState({robotLoaded: true});
     }
+    */
 
 }
 
