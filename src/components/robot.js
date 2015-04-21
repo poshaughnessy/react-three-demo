@@ -40,10 +40,11 @@ class RobotComponent extends React.Component {
 
     render() {
 
+        //console.log('Render robot');
 
         return React.createElement(
             ReactTHREE.Object3D,
-            {position: new THREE.Vector3(0,0,0)},
+            {position: this.props.position || new THREE.Vector3(0,0,0)},
             React.createElement( ReactTHREE.Mesh, {geometry: this.geometry, material: this.material} )
         );
 

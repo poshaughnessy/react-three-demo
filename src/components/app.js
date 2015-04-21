@@ -31,12 +31,15 @@ class AppComponent extends React.Component {
             }
         );
 
-        console.log('robot loaded', this.state.robotLoaded);
+        //console.log('robot loaded', this.state.robotLoaded);
+
+        //console.log('robot position', this.props.robotPosition);
 
         let RobotElement = React.createElement(
             RobotComponent,     // type
             {
-                onLoad: this.onRobotLoaded.bind(this)
+                onLoad: this.onRobotLoaded.bind(this),
+                position: this.props.robotPosition ? this.props.robotPosition : new THREE.Vector3(0,0,0)
             }
         );
 
@@ -56,12 +59,16 @@ class AppComponent extends React.Component {
 
     onRobotLoaded() {
 
-        console.log('this', this);
+        //console.log('this', this);
 
         this.setState({robotLoaded: true});
 
     }
 
 }
+
+AppComponent.propTypes = {
+    robotPosition: React.PropTypes.instanceOf(THREE.Vector3)
+};
 
 export default AppComponent;
