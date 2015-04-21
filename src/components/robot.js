@@ -40,7 +40,7 @@ class RobotComponent extends React.Component {
 
     render() {
 
-        //console.log('Render robot');
+        console.log('Render robot');
 
         return React.createElement(
             ReactTHREE.Object3D,
