@@ -3,15 +3,16 @@ import AppComponent from './components/app';
 
 let tempY = 0;
 
-let app = React.render(
-    React.createElement( AppComponent, {history: true} ),
-    document.getElementById('app')
-);
+let appState = { history: true, robotPosition: new THREE.Vector3(0,0,0) }
 
 function animate() {
     tempY++;
-    app.props.robotPosition = new THREE.Vector3(0, tempY, 0);
-    app.render();
+    appState.robotPosition.y = tempY;
+    React.render(
+        React.createElement( AppComponent, appState ),
+        document.getElementById('app')
+    );
+  
     requestAnimationFrame(animate);
 }
 

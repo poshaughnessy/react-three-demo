@@ -8,14 +8,11 @@ class AppComponent extends React.Component {
 
         super(props);
 
-        /*
         this.state = {
             robotLoaded: false
         };
 
-        this.onRobotLoaded.bind(this);
-        */
-
+        this.onRobotLoaded = this.onRobotLoaded.bind(this);
     }
 
     render() {
@@ -39,7 +36,7 @@ class AppComponent extends React.Component {
         let RobotElement = React.createElement(
             RobotComponent,
             {
-                onLoad: this.onRobotLoaded.bind(this),
+                onLoad: this.onRobotLoaded,
                 position: this.props.robotPosition || new THREE.Vector3(0,0,0)
             }
         );
@@ -58,12 +55,9 @@ class AppComponent extends React.Component {
         )
     }
 
-    /*
     onRobotLoaded() {
         this.setState({robotLoaded: true});
     }
-    */
-
 }
 
 AppComponent.propTypes = {
