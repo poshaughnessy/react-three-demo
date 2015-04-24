@@ -29,7 +29,7 @@ class RobotComponent extends React.Component {
         */
 
         this.texture = THREE.ImageUtils.loadTexture( '../../models/cupCake.png' );
-        this.material = new THREE.MeshBasicMaterial({ color: 0xFF0000 }); // map: this.texture
+        this.material = new THREE.MeshBasicMaterial({ map: this.texture });
         this.geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
     }
