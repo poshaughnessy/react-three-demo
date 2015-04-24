@@ -12,9 +12,6 @@
     "start": "iojs runServer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "browser": {
-    "three": "bower_components/threejs/build/three.js"
-  },
   "browserify-shim": "browserify-shim-config.js",
   "browserify": {
     "transform": [
@@ -45,8 +42,8 @@
     "babel": "^4.7.16",
     "express": "~4.12.3",
     "react": "~0.13.1",
-    "react-three": "git://github.com/Izzimach/react-three.git#dev",
-    "three": "^0.70.0"
+    "react-three": "git://github.com/poshaughnessy/react-three.git#dev",
+    "three": "^0.70.1"
   },
   "engines": {
     "iojs": "1.7.x"

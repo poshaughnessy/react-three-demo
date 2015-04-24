@@ -58,7 +58,7 @@ function browserifyBuild(watch) {
         bundler = watchify(browserify('./src/main.js',
             _.assign(watchify.args, {
                 debug: true
-            })));
+            })).ignore('three'));
 
         bundler.on('update', function() {
 

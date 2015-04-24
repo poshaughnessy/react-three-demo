@@ -30,14 +30,29 @@ class AppComponent extends React.Component {
             }
         );
 
-        //console.log('robot loaded', this.state.robotLoaded);
-        //console.log('robot position', this.props.robotPosition);
-
         let RobotElement = React.createElement(
             RobotComponent,
             {
                 onLoad: this.onRobotLoaded,
                 position: this.props.robotPosition || new THREE.Vector3(0,0,0)
+            }
+        );
+
+        let AmbientLight = React.createElement(
+            ReactTHREE.AmbientLight,
+            {
+                color: 0xFF0000,
+                position: new THREE.Vector3(0, 0, 600),
+                target: new THREE.Vector3(0, 0, 0)
+            }
+        );
+
+        let DirectionalLight = React.createElement(
+            ReactTHREE.DirectionalLight,
+            {
+                color: 0xFF0000,
+                position: new THREE.Vector3(0, 0, 600),
+                target: new THREE.Vector3(0, 0, 0)
             }
         );
 
@@ -51,7 +66,9 @@ class AppComponent extends React.Component {
                 background: 0xFFFFFF
             },
             CameraElement,
-            RobotElement
+            RobotElement,
+            AmbientLight,
+            DirectionalLight
         )
     }
 

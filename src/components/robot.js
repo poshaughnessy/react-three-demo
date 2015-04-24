@@ -29,14 +29,12 @@ class RobotComponent extends React.Component {
         */
 
         this.texture = THREE.ImageUtils.loadTexture( '../../models/cupCake.png' );
-        this.material = new THREE.MeshBasicMaterial({ map: this.texture });
+        this.material = new THREE.MeshBasicMaterial({ color: 0xFF0000 }); // map: this.texture
         this.geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
     }
 
     render() {
-
-        console.log('Render robot');
 
         return React.createElement(
             ReactTHREE.Object3D,
@@ -66,6 +64,10 @@ class RobotComponent extends React.Component {
     }
 
 }
+
+
+console.log('THREE', THREE);
+
 
 RobotComponent.propTypes = {
     position: React.PropTypes.instanceOf(THREE.Vector3)
