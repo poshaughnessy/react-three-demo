@@ -25,7 +25,7 @@ class AppComponent extends React.Component {
                 aspect: 800 / 600,
                 near: 1,
                 far: 1000,
-                position: new THREE.Vector3(0, 0, 600),
+                position: new THREE.Vector3(0, 0, 100),
                 lookat: new THREE.Vector3(0, 0, 0)
             }
         );
@@ -67,8 +67,8 @@ class AppComponent extends React.Component {
             },
             CameraElement,
             RobotElement,
-            AmbientLight,
-            DirectionalLight
+            AmbientLight
+            //DirectionalLight
         )
     }
 

@@ -78,7 +78,8 @@ class RobotComponent extends React.Component {
             React.createElement( ReactTHREE.Mesh, {
                 geometry: this.geometry,
                 material: this.material,
-                position: this.props.position || new THREE.Vector3(0,0,0)
+                position: this.props.position || new THREE.Vector3(0,0,0),
+                scale: 5
             })
         );
 
