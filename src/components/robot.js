@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTHREE from 'react-three';
 import THREE from 'three';
+import THREEColladaLoader from '../vendor/three-collada-loader';
 
 class RobotComponent extends React.Component {
 
@@ -10,24 +11,20 @@ class RobotComponent extends React.Component {
 
         this.displayName = 'Robot';
 
-        // TODO put back when I figure this out
-        /*
-        /*
         this.state = {
             scene: null
         };
 
-        let colladaLoader = new THREE.ColladaLoader();
+        let colladaLoader = new THREEColladaLoader();
 
         colladaLoader.load('/models/robby/RobbyTheRobot_FanArt.dae', collada => {
 
-            console.log('result', collada);
+            console.log('collada result', collada);
 
-            self.setState({scene: collada.scene});
+            this.setState({scene: collada.scene});
 
-            self.props.onLoad();
+            this.props.onLoad();
         });
-        */
 
         this.texture = THREE.ImageUtils.loadTexture( '../../models/cupCake.png' );
         this.material = new THREE.MeshBasicMaterial({ map: this.texture });
