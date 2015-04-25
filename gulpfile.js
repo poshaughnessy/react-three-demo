@@ -77,7 +77,7 @@ function browserifyBuild(watch) {
 
         bundler = browserify('./src/main.js', {
             debug: true
-        });
+        }).ignore('three');
 
     }
 

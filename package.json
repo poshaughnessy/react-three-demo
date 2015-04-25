@@ -36,14 +36,14 @@
     "module-deps": "~3.7.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.1.0"
+    "watchify": "^3.1.0",
+    "three": "~0.70.1"
   },
   "dependencies": {
     "babel": "^4.7.16",
     "express": "~4.12.3",
     "react": "~0.13.1",
-    "react-three": "git://github.com/poshaughnessy/react-three.git#dev",
-    "three": "^0.70.1"
+    "react-three": "git://github.com/poshaughnessy/react-three.git#dev"
   },
   "engines": {
     "iojs": "1.7.x"
