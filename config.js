@@ -19,7 +19,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.1.11",
     "core-js": "npm:core-js@0.8.4",
     "react": "npm:react@0.13.2",
-    "react-three": "github:Izzimach/react-three@master",
+    "react-three": "github:poshaughnessy/react-three@dev",
     "three": "npm:three@0.70.1",
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.2.1"

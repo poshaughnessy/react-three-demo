@@ -32,7 +32,7 @@
     "directories": {},
     "dependencies": {
       "react": "npm:react@^0.13.1",
-      "react-three": "github:Izzimach/react-three@master",
+      "react-three": "github:poshaughnessy/react-three@dev",
       "three": "npm:three@^0.70.1"
     },
     "devDependencies": {

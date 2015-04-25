@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactTHREE from 'react-three';
-import THREE from 'three';
-import THREEColladaLoader from '../vendor/three-collada-loader';
 
 class RobotComponent extends React.Component {
 

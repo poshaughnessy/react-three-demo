@@ -26,7 +26,7 @@ function buildJS(isForProd) {
 
     return new Promise(function(resolve, reject) {
 
-        var builder = new Builder();
+        var builder = new Builder({});
 
         builder.reset();
 
@@ -42,7 +42,7 @@ function buildJS(isForProd) {
 
                 // Make a Self-Executing (SFX) bundle
                 builder.buildSFX('src/main', isForProd ? 'dist/js/bundle.min.js' : 'dist/js/bundle.js',
-                    {minify: isForProd, sourceMaps: isForProd})
+                    {minify: isForProd, sourceMaps: isForProd, runtime: false})
                     .then(function() {
 
                         hrTime = process.hrtime();
@@ -84,6 +84,8 @@ gulp.task('build-dev', function(cb) {
 
     return buildJS(false).then(function() {
 
+        console.log('Copy index.html');
+
         gulp.src('src/index.html')
             .pipe(gulp.dest('dist'));
 
@@ -99,7 +101,7 @@ gulp.task('build-prod', function() {
     return buildJS(true).then(function() {
 
         gulp.src('src/index.html')
-            .pipe(replace(/bundle/g, 'bundle.min'))
+            .pipe(replace(/bundle\./g, 'bundle.min.'))
             .pipe(gulp.dest('dist'));
 
     });
