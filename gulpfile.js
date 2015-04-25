@@ -9,58 +9,97 @@ require('babel/register');
 // TEMP fix for this issue: https://github.com/babel/babel/issues/489
 Object.getPrototypeOf.toString = function() {return Object.toString();};
 
-var gulp = require('gulp'),
+var _ = require('lodash'),
+    gulp = require('gulp'),
+    //babel = require('gulp-babel'),
+    buffer = require('vinyl-buffer'),
     concat = require('gulp-concat'),
-    replace = require('gulp-replace'),
+    gutil = require('gulp-util'),
+    //rename = require('gulp-rename'),
     sass = require('gulp-sass'),
+    source = require('vinyl-source-stream'),
     sourcemaps = require('gulp-sourcemaps'),
+    babelify = require('babelify'),
+    browserify = require('browserify'),
+    watchify = require('watchify'),
     fs = require('fs'),
-    path = require('path'),
-    server = require('./server'),
-    Builder = require('systemjs-builder');
+    server = require('./server');
 
 /**
- * SystemJS / Babel build
+ *  Transpile and concatenate the JavaScripts into dist/bundle.js
  */
-function buildJS(isForProd) {
+/*
+gulp.task('babel', function() {
 
-    return new Promise(function(resolve, reject) {
+    return browserify('./src/main.js', {
+            debug: true  // Set to false for production!
+        })
+        //.transform('browserify-shim')
+        .transform(babelify.configure({
+            extensions: ['.js']//,
+            //ignore: 'bower_components'
+        }))
+        .bundle()
+        .on('error', function (err) { console.log('Babelify error : ' + err.message); })
+        .pipe(fs.createWriteStream('./dist/bundle.js'));
 
-        var builder = new Builder();
+});
+*/
 
-        builder.reset();
+/**
+ * Thanks rootical. Based on: https://gist.github.com/rootical/d700ea0d89bbfc362fc5
+ */
+function browserifyBuild(watch) {
 
-        builder.loadConfig('./config.js')
-            .then(function() {
+    var bundler;
 
-                //builder.loader.baseURL = path.resolve('.');
+    if( watch ) {
 
-                var hrTime = process.hrtime();
-                var t1 = hrTime[0] * 1000 + hrTime[1] / 1000000;
+        bundler = watchify(browserify('./src/main.js',
+            _.assign(watchify.args, {
+                debug: true
+            })).ignore('three'));
 
-                console.log('Building bundle...');
+        bundler.on('update', function() {
 
-                // Make a Self-Executing (SFX) bundle
-                builder.buildSFX('src/main', isForProd ? 'dist/js/bundle.min.js' : 'dist/js/bundle.js',
-                    {minify: isForProd, sourceMaps: isForProd})
-                    .then(function() {
+            var hrTime = process.hrtime();
+            var t1 = hrTime[0] * 1000 + hrTime[1] / 1000000;
 
-                        hrTime = process.hrtime();
-                        var t2 = hrTime[0] * 1000 + hrTime[1] / 1000000;
+            rebundle();
 
-                        console.log('Bundle built in ' + Math.round(t2-t1) + ' ms' );
+            hrTime = process.hrtime();
+            var t2 = hrTime[0] * 1000 + hrTime[1] / 1000000;
+            gutil.log('Rebundle took ' + Math.round(t2-t1) + ' ms');
 
-                        resolve();
+        });
 
-                    })
-                    .catch(function(err) {
-                        console.log('Error!', err);
-                        reject(Error('Builder error'));
-                    });
+    } else {
+
+        bundler = browserify('./src/main.js', {
+            debug: true
+        });
+
+    }
+
+    bundler.transform(babelify.configure({
+        compact: false
+    }));
+
+    function rebundle() {
+        return bundler.bundle()
+            .on('error', function(e) {
+                gutil.log('Browserify Error', e);
             })
+            .pipe(source('bundle.js'))
+            .pipe(buffer())
+            .pipe(sourcemaps.init({
+                loadMaps: true
+            }))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('dist'));
+    }
 
-    });
-
+    return rebundle();
 }
 
 /**
@@ -73,56 +112,36 @@ gulp.task('sass', function() {
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(sourcemaps.write())
         .pipe(concat('styles.css'))
-        .pipe(gulp.dest('./dist/css'));
+        .pipe(gulp.dest('./dist'));
 
 });
 
-/**
- * Build JS for development
- */
-gulp.task('build-dev', function(cb) {
-
-    return buildJS(false).then(function() {
-
-        gulp.src('src/index.html')
-            .pipe(gulp.dest('dist'));
-
-    });
-
+gulp.task('browserify', function() {
+    browserifyBuild(false);
 });
 
 /**
- * Build JS for production
+ * Browserify watch
  */
-gulp.task('build-prod', function() {
-
-    return buildJS(true).then(function() {
-
-        gulp.src('src/index.html')
-            .pipe(replace(/bundle/g, 'bundle.min'))
-            .pipe(gulp.dest('dist'));
-
-    });
-
+gulp.task('browserify-watch', function() {
+    browserifyBuild(true);
 });
 
 /**
- * Compile SCSS
+ * Compile JS and SCSS
  */
-gulp.task('compile-dev', ['sass', 'build-dev'], function() {
+gulp.task('compile', ['browserify', 'sass'], function() {
 });
 
 /**
  * Compile and watch for changes
  */
-gulp.task('watch', ['compile-dev'], function() {
+gulp.task('watch', ['compile','browserify-watch'], function() {
     gulp.watch('./styles/*.scss', ['sass']);
-    gulp.watch('./src/**/*.js', ['build-dev']);
 });
 
 /**
- * Compile and start watching, then start the development server
- * (Production doesn't use gulp for the server, just for building beforehand).
+ * Compile and start watching, then start the server
  */
 gulp.task('serve', ['watch'], function() {
     server.start();
@@ -131,5 +150,5 @@ gulp.task('serve', ['watch'], function() {
 /**
  * By default, runs the compile task
  */
-gulp.task('default', ['compile-dev'], function() {
+gulp.task('default', ['compile'], function() {
 });
