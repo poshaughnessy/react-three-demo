@@ -1,5 +1,6 @@
 import React from 'react';
 import AppComponent from './components/app';
+import THREE from 'three';
 
 let tempY = 0;
 
