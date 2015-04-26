@@ -10,6 +10,7 @@ app.set('view engine', 'ejs');
 app.use( '/bower_components', express.static('bower_components') );
 app.use( '/node_modules/three/', express.static('node_modules/three/') );
 app.use( '/dist', express.static('dist') );
+app.use( '/images', express.static('images') );
 app.use( '/models', express.static('models') );
 
 app.get('/', (req, res) => {
