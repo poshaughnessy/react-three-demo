@@ -21,6 +21,7 @@ var _ = require('lodash'),
     sourcemaps = require('gulp-sourcemaps'),
     babelify = require('babelify'),
     browserify = require('browserify'),
+    browserifyShim = require('browserify-shim'),
     watchify = require('watchify'),
     fs = require('fs'),
     server = require('./server');
@@ -58,38 +59,37 @@ function browserifyBuild(watch) {
         bundler = watchify(browserify('./src/main.js',
             _.assign(watchify.args, {
                 debug: true
-            })).ignore('three'));
+            })).ignore('three')); // This means THREE.js won't be included in the bundle - we're pulling in via separate script tag
 
         bundler.on('update', function() {
-
-            var hrTime = process.hrtime();
-            var t1 = hrTime[0] * 1000 + hrTime[1] / 1000000;
-
-            rebundle();
-
-            hrTime = process.hrtime();
-            var t2 = hrTime[0] * 1000 + hrTime[1] / 1000000;
-            gutil.log('Rebundle took ' + Math.round(t2-t1) + ' ms');
-
+            bundle();
         });
 
     } else {
 
         bundler = browserify('./src/main.js', {
             debug: true
-        }).ignore('three');
+        }).ignore('three'); // This means THREE.js won't be included in the bundle - we're pulling in via separate script tag
 
     }
 
-    bundler.transform(babelify.configure({
-        compact: false
-    }));
+    bundler.on('error', function(error) {
+        gutil.log('Browserify error', error);
+    });
 
-    function rebundle() {
-        return bundler.bundle()
-            .on('error', function(e) {
-                gutil.log('Browserify Error', e);
-            })
+    function bundle() {
+
+        gutil.log('Bundle...');
+
+        var hrTime = process.hrtime();
+        var t1 = hrTime[0] * 1000 + hrTime[1] / 1000000;
+
+        bundler
+            // Apply Babelify transform to transpile from ES6 to ES5 - TODO set compact to true for production build?
+            .transform(babelify.configure({compact: false}))
+            // Apply Browserify Shim to allow us to use globals like THREE. Global means it will apply to our dependencies too (e.g. react-three)
+            .transform({global: true}, 'browserify-shim')
+            .bundle()
             .pipe(source('bundle.js'))
             .pipe(buffer())
             .pipe(sourcemaps.init({
@@ -97,9 +97,15 @@ function browserifyBuild(watch) {
             }))
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('dist'));
+
+        hrTime = process.hrtime();
+        var t2 = hrTime[0] * 1000 + hrTime[1] / 1000000;
+
+        gutil.log('Bundle took ' + Math.round(t2-t1) + ' ms');
+
     }
 
-    return rebundle();
+    return bundle();
 }
 
 /**
@@ -117,14 +123,14 @@ gulp.task('sass', function() {
 });
 
 gulp.task('browserify', function() {
-    browserifyBuild(false);
+    return browserifyBuild(false);
 });
 
 /**
  * Browserify watch
  */
 gulp.task('browserify-watch', function() {
-    browserifyBuild(true);
+    return browserifyBuild(true);
 });
 
 /**

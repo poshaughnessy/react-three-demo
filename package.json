@@ -43,7 +43,7 @@
     "babel": "^4.7.16",
     "express": "~4.12.3",
     "react": "~0.13.1",
-    "react-three": "git://github.com/poshaughnessy/react-three.git#dev"
+    "react-three": "git://github.com/Izzimach/react-three.git#dev"
   },
   "engines": {
     "iojs": "1.7.x"

@@ -26,6 +26,7 @@ class RobotComponent extends React.Component {
         });
         */
 
+        /*
         let loader = new THREE.JSONLoader();
 
         console.log('Loading...');
@@ -37,9 +38,11 @@ class RobotComponent extends React.Component {
             this.geometry = geometry;
             this.material = new THREE.MeshFaceMaterial( materials );
         });
+        */
 
-        //this.material = new THREE.MeshBasicMaterial({ color: 0xFF0000 });
-        //this.geometry = new THREE.BoxGeometry( 100, 100, 100 );
+        let texture = THREE.ImageUtils.loadTexture('/models/cupCake.png');
+        this.material = new THREE.MeshBasicMaterial({ map: texture }); // color: 0xFF000
+        this.geometry = new THREE.BoxGeometry( 10, 10, 10 );
 
     }
 
