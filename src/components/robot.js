@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactTHREE from 'react-three';
+import THREE from 'three';
 
 class RobotComponent extends React.Component {
 
