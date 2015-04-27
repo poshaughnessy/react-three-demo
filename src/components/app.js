@@ -42,7 +42,8 @@ class AppComponent extends React.Component {
         let AmbientLight = React.createElement(
             ReactTHREE.AmbientLight,
             {
-                color: 0xFFFFFF,
+                color: new THREE.Color(0x666666),
+                intensity: 0.5,
                 position: new THREE.Vector3(0, 0, 600),
                 target: new THREE.Vector3(0, 0, 0)
             }
@@ -51,8 +52,8 @@ class AppComponent extends React.Component {
         let DirectionalLight = React.createElement(
             ReactTHREE.DirectionalLight,
             {
-                color: 0xFFFFFF,
-                intensity: 0.9,
+                color: new THREE.Color(0xFFFFFF),
+                intensity: 0.6,
                 position: new THREE.Vector3(0, 0, 60)
             }
         );

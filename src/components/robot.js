@@ -19,7 +19,8 @@ class RobotComponent extends React.Component {
             console.log('Loaded!', geometry, materials);
 
             this.geometry = geometry;
-            this.material = new THREE.MeshLambertMaterial({color: 0xFF0000, ambient: 0xFF0000, emissive: 0xFF0000}); //new THREE.MeshFaceMaterial( materials );
+            this.material = new THREE.MeshFaceMaterial( materials );
+
         });
 
         // For testing

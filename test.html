@@ -1,7 +1,4 @@
 <!-- XXX TEMPORARY TEST -->
-<!-- To view this: -->
-<!-- python -m SimpleHTTPServer -->
-<!-- http://localhost:8000/test.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +46,7 @@
 
             console.log('Loaded!', geometry, materials);
 
-            var mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: 0xFF0000, ambient: 0xFF0000, emissive: 0xFF0000})); //new THREE.MeshFaceMaterial( materials ));
+            var mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial( materials ));
 
             mesh.scale.set( 10, 10, 10 );
             mesh.position.y = -20;
