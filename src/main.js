@@ -4,7 +4,7 @@ import THREE from 'three';
 
 let tempY = 0;
 
-let appState = { history: true, robotPosition: new THREE.Vector3(0,0,0) }
+let appState = { history: true, robotPosition: new THREE.Vector3(0,-25,0) };
 
 function animate() {
     //tempY++;

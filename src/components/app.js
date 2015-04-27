@@ -23,7 +23,7 @@ class AppComponent extends React.Component {
             {                               // config
                 name: 'camera',
                 fov: 75,
-                aspect: 800 / 600,
+                aspect: window.innerWidth / window.innerHeight,
                 near: 1,
                 far: 1000,
                 position: new THREE.Vector3(0, 0, 100),
@@ -42,34 +42,65 @@ class AppComponent extends React.Component {
         let AmbientLight = React.createElement(
             ReactTHREE.AmbientLight,
             {
-                color: 0xFF0000,
+                color: 0xFFFFFF,
                 position: new THREE.Vector3(0, 0, 600),
                 target: new THREE.Vector3(0, 0, 0)
             }
         );
 
+        /*
+        let DirectionalLightTarget = new ReactTHREE.Object3D();
+
+        console.log('DirectionalLightTarget', DirectionalLightTarget);
+
+        React.createElement(
+            ,
+            {
+                position: new THREE.Vector3(0, 0, 0)
+            }
+        );
+        */
+
         let DirectionalLight = React.createElement(
             ReactTHREE.DirectionalLight,
             {
-                color: 0xFF0000,
-                position: new THREE.Vector3(0, 0, 600),
-                target: new THREE.Vector3(0, 0, 0)
+                color: 0xFFFFFF,
+                intensity: 0.9,
+                position: new THREE.Vector3(0, 0, 60),
+                castShadow: true,
+                shadowCameraVisible: true,
+                shadowCameraNear: 1,
+                shadowCameraFar: 1000,
+                shadowCameraFov: 50,
+                shadowCameraLeft: -100,
+                shadowCameraRight: 100,
+                shadowCameraBottom: -100,
+                shadowCameraTop: 100,
+                //target: DirectionalLightTarget
+            }
+        );
+
+        let SpotLight = React.createElement(
+            ReactTHREE.SpotLight,
+            {
+                position: new THREE.Vector3(0, 0, 100)
             }
         );
 
         return React.createElement(
             ReactTHREE.Scene,
             {
-                width: 800,
-                height: 600,
+                width: window.innerWidth,
+                height: window.innerHeight,
                 camera: 'camera',
                 antialias: true,
                 background: 0xFFFFFF
             },
             CameraElement,
             RobotElement,
-            AmbientLight
-            //DirectionalLight
+            AmbientLight,
+            DirectionalLight,
+            SpotLight
         )
     }
 
