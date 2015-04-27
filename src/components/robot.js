@@ -15,12 +15,13 @@ class RobotComponent extends React.Component {
         console.log('Loading...');
 
         // '/models/robby/RobbyTheRobot_FanArt.js'
-        loader.load('/models/monster/monster.js', (geometry, materials) => {
+        // '/models/monster/monster.js'
+        loader.load('/models/robby/RobbyTheRobot_FanArt.js', (geometry, materials) => {
 
             console.log('Loaded!', geometry, materials);
 
             this.geometry = geometry;
-            this.material = materials[0]; //new THREE.MeshFaceMaterial( materials );
+            this.material = new THREE.MeshFaceMaterial( materials ); // Use materials[0] for the monster
 
         });
 
@@ -43,7 +44,7 @@ class RobotComponent extends React.Component {
                 geometry: this.geometry,
                 material: this.material,
                 position: this.props.position || new THREE.Vector3(0,0,0),
-                scale: 0.001
+                scale: 8 // Use 0.001 for the monster
             })
         );
 
