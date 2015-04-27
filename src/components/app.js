@@ -48,35 +48,12 @@ class AppComponent extends React.Component {
             }
         );
 
-        /*
-        let DirectionalLightTarget = new ReactTHREE.Object3D();
-
-        console.log('DirectionalLightTarget', DirectionalLightTarget);
-
-        React.createElement(
-            ,
-            {
-                position: new THREE.Vector3(0, 0, 0)
-            }
-        );
-        */
-
         let DirectionalLight = React.createElement(
             ReactTHREE.DirectionalLight,
             {
                 color: 0xFFFFFF,
                 intensity: 0.9,
-                position: new THREE.Vector3(0, 0, 60),
-                castShadow: true,
-                shadowCameraVisible: true,
-                shadowCameraNear: 1,
-                shadowCameraFar: 1000,
-                shadowCameraFov: 50,
-                shadowCameraLeft: -100,
-                shadowCameraRight: 100,
-                shadowCameraBottom: -100,
-                shadowCameraTop: 100,
-                //target: DirectionalLightTarget
+                position: new THREE.Vector3(0, 0, 60)
             }
         );
 
