@@ -53,7 +53,7 @@ class AppComponent extends React.Component {
             ReactTHREE.DirectionalLight,
             {
                 color: new THREE.Color(0xFFFFFF),
-                intensity: 1.0,
+                intensity: 1.5,
                 position: new THREE.Vector3(0, 0, 60)
             }
         );
