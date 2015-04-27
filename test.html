@@ -30,11 +30,11 @@
         renderer.setClearColor( 0xFFFFFF );
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        var ambientLight = new THREE.AmbientLight( 0x666666 );
+        var ambientLight = new THREE.AmbientLight( 0xAAAAAA );
         //scene.add( ambientLight );
 
-        var directionalLight = new THREE.DirectionalLight( 0xCCCCCC, 1.0 );
-        directionalLight.position.set( 0, 0, 100 );
+        var directionalLight = new THREE.DirectionalLight( 0xFFFFFF, 2.0 );
+        directionalLight.position.set( 0, 0, 60 );
         directionalLight.target.position.set( 0, 0, 0 );
 
         scene.add( directionalLight );
@@ -49,7 +49,7 @@
             var mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial( materials ));
 
             mesh.scale.set( 10, 10, 10 );
-            mesh.position.y = -20;
+            mesh.position.y = -30;
 
             scene.add( mesh );
 
