@@ -15,7 +15,7 @@ function animate() {
     if( appState.robotMovingForwards ) {
 
 
-        if( robotZ < 50 ) {
+        if( robotZ < ROBOT_Z_NEAR ) {
             appState.robotPosition.z += ROBOT_MOVE_RATE;
         } else {
             appState.robotMovingForwards = false;
@@ -23,7 +23,7 @@ function animate() {
 
     } else {
 
-        if( robotZ > 0 ) {
+        if( robotZ > ROBOT_Z_FAR ) {
             appState.robotPosition.z -= ROBOT_MOVE_RATE;
         } else {
             appState.robotMovingForwards = true;
