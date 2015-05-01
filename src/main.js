@@ -6,33 +6,33 @@ const ROBOT_Z_NEAR = 50;
 const ROBOT_Z_FAR = 0;
 const ROBOT_MOVE_RATE = 0.1;
 
-let appState = { history: true, robotPosition: new THREE.Vector3(0,-30,0), robotMovingForwards: true };
+let appProps = { robotPosition: new THREE.Vector3(0,-30,0), robotMovingForwards: true };
 
 function animate() {
 
-    let robotZ = appState.robotPosition.z;
+    let robotZ = appProps.robotPosition.z;
 
-    if( appState.robotMovingForwards ) {
+    if( appProps.robotMovingForwards ) {
 
 
         if( robotZ < ROBOT_Z_NEAR ) {
-            appState.robotPosition.z += ROBOT_MOVE_RATE;
+            appProps.robotPosition.z += ROBOT_MOVE_RATE;
         } else {
-            appState.robotMovingForwards = false;
+            appProps.robotMovingForwards = false;
         }
 
     } else {
 
         if( robotZ > ROBOT_Z_FAR ) {
-            appState.robotPosition.z -= ROBOT_MOVE_RATE;
+            appProps.robotPosition.z -= ROBOT_MOVE_RATE;
         } else {
-            appState.robotMovingForwards = true;
+            appProps.robotMovingForwards = true;
         }
 
     }
 
     React.render(
-        React.createElement( AppComponent, appState ),
+        React.createElement( AppComponent, appProps ),
         document.getElementById('app')
     );
   
