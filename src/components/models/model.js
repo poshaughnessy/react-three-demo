@@ -6,8 +6,6 @@ class ModelComponent extends React.Component {
 
     render() {
 
-        console.log('this.props', this.props, this.displayName);
-
         return React.createElement( ReactTHREE.Mesh, {
             geometry: this.geometry,
             material: this.material,
