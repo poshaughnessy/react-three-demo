@@ -8,6 +8,7 @@ import MonsterComponent from './models/monster';
 const MODEL_Z_NEAR = 50;
 const MODEL_Z_FAR = 0;
 const MODEL_MOVE_RATE = 0.1;
+const MODEL_SPIN_RATE = 0.1;
 
 const ROBOT_Y_ADJUST = -10;
 const MONSTER_X_ADJUST = -40;
@@ -20,10 +21,14 @@ class SceneComponent extends React.Component {
 
         this.state = {
             modelPosition: new THREE.Vector3(0,-20,0),
-            modelMovingForwards: true
+            modelRotation: 0
         };
 
+        this.modelMovingForwards = true;
+
         this._animate = this._animate.bind(this);
+        this._animateForwardsAndBack = this._animateForwardsAndBack.bind(this);
+        this._animateSpin = this._animateSpin.bind(this);
     }
 
     componentDidMount() {
@@ -60,6 +65,7 @@ class SceneComponent extends React.Component {
             RobotComponent,
             {
                 position: robotPosition,
+                quaternion: new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(), this.state.modelRotation),
                 visible: (this.props.model === Constants.MODEL.ROBOT),
                 scale: 8
             }
@@ -69,6 +75,7 @@ class SceneComponent extends React.Component {
             MonsterComponent,
             {
                 position: monsterPosition,
+                quaternion: new THREE.Quaternion(0, this.state.modelRotation, 0, 1),
                 visible: (this.props.model === Constants.MODEL.MONSTER),
                 scale: 0.04
             }
@@ -120,16 +127,32 @@ class SceneComponent extends React.Component {
 
     _animate() {
 
+        if (this.props.animation === Constants.ANIMATION.FORWARDS_AND_BACK) {
+
+            this._animateForwardsAndBack();
+
+        } else if (this.props.animation === Constants.ANIMATION.SPIN) {
+
+            this._animateSpin();
+
+        }
+
+        requestAnimationFrame(this._animate);
+
+    }
+
+    _animateForwardsAndBack() {
+
         let modelZ = this.state.modelPosition.z;
 
-        if( this.state.modelMovingForwards ) {
+        if( this.modelMovingForwards ) {
 
             if( modelZ < MODEL_Z_NEAR ) {
                 let newPos = this.state.modelPosition;
                 newPos.z += MODEL_MOVE_RATE;
                 this.setState({modelPosition: newPos});
             } else {
-                this.setState({modelMovingForwards: false});
+                this.modelMovingForwards = false;
             }
 
         } else {
@@ -139,12 +162,17 @@ class SceneComponent extends React.Component {
                 newPos.z -= MODEL_MOVE_RATE;
                 this.setState({modelPosition: newPos});
             } else {
-                this.setState({modelMovingForwards: true});
+                this.modelMovingForwards = true;
             }
 
         }
 
-        requestAnimationFrame(this._animate);
+
+    }
+
+    _animateSpin() {
+
+        this.setState({modelRotation: this.state.modelRotation + MODEL_SPIN_RATE});
 
     }
 

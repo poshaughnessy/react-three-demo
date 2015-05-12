@@ -16,6 +16,7 @@ class AppComponent extends React.Component {
         };
 
         this._onChangeModel = this._onChangeModel.bind(this);
+        this._onChangeAnimation = this._onChangeAnimation.bind(this);
 
     }
 
@@ -26,7 +27,7 @@ class AppComponent extends React.Component {
 
         return (
             <div>
-                <ControlsComponent model={this.state.model} animation={this.state.animation} onChangeModel={this._onChangeModel}/>
+                <ControlsComponent model={this.state.model} animation={this.state.animation} onChangeModel={this._onChangeModel} onChangeAnimation={this._onChangeAnimation}/>
                 <SceneComponent model={this.state.model} animation={this.state.animation}/>
             </div>
         );
@@ -36,6 +37,12 @@ class AppComponent extends React.Component {
     _onChangeModel(model) {
 
         this.setState({model: model});
+
+    }
+
+    _onChangeAnimation(animation) {
+
+        this.setState({animation: animation});
 
     }
 

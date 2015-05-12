@@ -4,8 +4,8 @@ const Constants = {
         MONSTER: 'monster'
     },
     ANIMATION: {
-        LEFT_AND_RIGHT: 'left-and-right',
-        FORWARDS_AND_BACK: 'forwards-and-back'
+        FORWARDS_AND_BACK: 'forwards-and-back',
+        SPIN: 'spin'
     }
 }
 
