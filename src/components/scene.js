@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactTHREE from 'react-three';
-import RobotComponent from './robot';
 import THREE from 'three';
+import Constants from '../constants';
+import RobotComponent from './robot';
+import MonsterComponent from './monster';
 
-const ROBOT_Z_NEAR = 50;
-const ROBOT_Z_FAR = 0;
-const ROBOT_MOVE_RATE = 0.1;
+const MODEL_Z_NEAR = 50;
+const MODEL_Z_FAR = 0;
+const MODEL_MOVE_RATE = 0.1;
+
+const ROBOT_Y_ADJUST = -10;
+const MONSTER_X_ADJUST = -40;
 
 class SceneComponent extends React.Component {
 
@@ -14,13 +19,11 @@ class SceneComponent extends React.Component {
         super(props);
 
         this.state = {
-            robotLoaded: false,
-            robotPosition: new THREE.Vector3(0,-30,0),
-            robotMovingForwards: true
+            modelPosition: new THREE.Vector3(0,-20,0),
+            modelMovingForwards: true
         };
 
         this._animate = this._animate.bind(this);
-        this._onRobotLoaded = this._onRobotLoaded.bind(this);
     }
 
     componentDidMount() {
@@ -31,6 +34,14 @@ class SceneComponent extends React.Component {
     }
 
     render() {
+
+        let x = this.state.modelPosition.x;
+        let y = this.state.modelPosition.y;
+        let z = this.state.modelPosition.z;
+
+        // Adjust relative positions
+        let robotPosition = new THREE.Vector3( x, y + ROBOT_Y_ADJUST, z );
+        let monsterPosition = new THREE.Vector3( x + MONSTER_X_ADJUST, y, z );
 
         let CameraElement = React.createElement(
             ReactTHREE.PerspectiveCamera,   // type
@@ -48,8 +59,14 @@ class SceneComponent extends React.Component {
         let RobotElement = React.createElement(
             RobotComponent,
             {
-                onLoad: this._onRobotLoaded,
-                position: this.state.robotPosition || new THREE.Vector3(0,0,0)
+                position: robotPosition
+            }
+        );
+
+        let MonsterElement = React.createElement(
+            MonsterComponent,
+            {
+                position: monsterPosition
             }
         );
 
@@ -79,6 +96,14 @@ class SceneComponent extends React.Component {
             }
         );
 
+        let ModelElement = null;
+
+        if( this.props.model === Constants.MODEL.ROBOT ) {
+            ModelElement = RobotElement;
+        } else if( this.props.model === Constants.MODEL.MONSTER ) {
+            ModelElement = MonsterElement;
+        }
+
         return React.createElement(
             ReactTHREE.Scene,
             {
@@ -89,7 +114,7 @@ class SceneComponent extends React.Component {
                 background: 0xEEEEEE
             },
             CameraElement,
-            RobotElement,
+            ModelElement,
             AmbientLight,
             DirectionalLight,
             SpotLight
@@ -98,26 +123,26 @@ class SceneComponent extends React.Component {
 
     _animate() {
 
-        let robotZ = this.state.robotPosition.z;
+        let modelZ = this.state.modelPosition.z;
 
-        if( this.state.robotMovingForwards ) {
+        if( this.state.modelMovingForwards ) {
 
-            if( robotZ < ROBOT_Z_NEAR ) {
-                let newPos = this.state.robotPosition;
-                newPos.z += ROBOT_MOVE_RATE;
-                this.setState({robotPosition: newPos});
+            if( modelZ < MODEL_Z_NEAR ) {
+                let newPos = this.state.modelPosition;
+                newPos.z += MODEL_MOVE_RATE;
+                this.setState({modelPosition: newPos});
             } else {
-                this.setState({robotMovingForwards: false});
+                this.setState({modelMovingForwards: false});
             }
 
         } else {
 
-            if( robotZ > ROBOT_Z_FAR ) {
-                let newPos = this.state.robotPosition;
-                newPos.z -= ROBOT_MOVE_RATE;
-                this.setState({robotPosition: newPos});
+            if( modelZ > MODEL_Z_FAR ) {
+                let newPos = this.state.modelPosition;
+                newPos.z -= MODEL_MOVE_RATE;
+                this.setState({modelPosition: newPos});
             } else {
-                this.setState({robotMovingForwards: true});
+                this.setState({modelMovingForwards: true});
             }
 
         }
@@ -126,9 +151,6 @@ class SceneComponent extends React.Component {
 
     }
 
-    _onRobotLoaded() {
-        this.setState({robotLoaded: true});
-    }
 }
 
 export default SceneComponent;
