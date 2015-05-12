@@ -2,8 +2,8 @@ import React from 'react';
 import ReactTHREE from 'react-three';
 import THREE from 'three';
 import Constants from '../constants';
-import RobotComponent from './robot';
-import MonsterComponent from './monster';
+import RobotComponent from './models/robot';
+import MonsterComponent from './models/monster';
 
 const MODEL_Z_NEAR = 50;
 const MODEL_Z_FAR = 0;
@@ -59,14 +59,18 @@ class SceneComponent extends React.Component {
         let RobotElement = React.createElement(
             RobotComponent,
             {
-                position: robotPosition
+                position: robotPosition,
+                visible: (this.props.model === Constants.MODEL.ROBOT),
+                scale: 8
             }
         );
 
         let MonsterElement = React.createElement(
             MonsterComponent,
             {
-                position: monsterPosition
+                position: monsterPosition,
+                visible: (this.props.model === Constants.MODEL.MONSTER),
+                scale: 0.04
             }
         );
 
@@ -96,14 +100,6 @@ class SceneComponent extends React.Component {
             }
         );
 
-        let ModelElement = null;
-
-        if( this.props.model === Constants.MODEL.ROBOT ) {
-            ModelElement = RobotElement;
-        } else if( this.props.model === Constants.MODEL.MONSTER ) {
-            ModelElement = MonsterElement;
-        }
-
         return React.createElement(
             ReactTHREE.Scene,
             {
@@ -114,7 +110,8 @@ class SceneComponent extends React.Component {
                 background: 0xEEEEEE
             },
             CameraElement,
-            ModelElement,
+            RobotElement,
+            MonsterElement,
             AmbientLight,
             DirectionalLight,
             SpotLight

@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactTHREE from 'react-three';
 import THREE from 'three';
+import ModelComponent from './model';
 
-class MonsterComponent extends React.Component {
+class MonsterComponent extends ModelComponent {
 
     constructor(props) {
 
@@ -23,25 +24,9 @@ class MonsterComponent extends React.Component {
 
     }
 
-    render() {
-
-        return React.createElement(
-            ReactTHREE.Object3D,
-            {},
-            React.createElement( ReactTHREE.Mesh, {
-                geometry: this.geometry,
-                material: this.material,
-                position: this.props.position,
-                scale: 0.04
-            })
-        );
-
-    }
-
 }
 
-MonsterComponent.propTypes = {
-    position: React.PropTypes.instanceOf(THREE.Vector3)
-};
+
+console.log('MonsterComponent', MonsterComponent);
 
 export default MonsterComponent;
