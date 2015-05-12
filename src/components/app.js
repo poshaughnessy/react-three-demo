@@ -33,7 +33,6 @@ class AppComponent extends React.Component {
 
     }
 
-    // TODO consider switching to an events system so Controls can notify and Scene listen directly!
     _onChangeModel(model) {
 
         this.setState({model: model});
