@@ -6,6 +6,12 @@ body {
   overflow: hidden;
 }
 
+a,
+a:hover,
+a:visited {
+  color: #333;
+}
+
 header {
 
   padding: 5px;
@@ -34,4 +40,13 @@ header {
     clear: both;
   }
 
+}
+
+#credits {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.7em;
+  padding: 10px;
+  color: #666;
 }
