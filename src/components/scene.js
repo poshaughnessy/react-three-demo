@@ -3,15 +3,14 @@ import ReactTHREE from 'react-three';
 import THREE from 'three';
 import Constants from '../constants';
 import RobotComponent from './models/robot';
-import MonsterComponent from './models/monster';
+import DinosaurComponent from './models/dinosaur';
 
-const MODEL_Z_NEAR = 50;
-const MODEL_Z_FAR = 0;
-const MODEL_MOVE_RATE = 0.1;
-const MODEL_SPIN_RATE = 0.01;
-
-const ROBOT_Y_ADJUST = -10;
-const MONSTER_X_ADJUST = -40;
+const MODEL_Z_NEAR = 50,
+      MODEL_Z_FAR = 0,
+      MODEL_MOVE_RATE = 0.1,
+      MODEL_SPIN_RATE = 0.01,
+      ROBOT_Y_ADJUST = -10,
+      DINOSAUR_Y_ADJUST = 20;
 
 class SceneComponent extends React.Component {
 
@@ -46,7 +45,7 @@ class SceneComponent extends React.Component {
 
         // Adjust relative positions
         let robotPosition = new THREE.Vector3( x, y + ROBOT_Y_ADJUST, z ),
-            monsterPosition = new THREE.Vector3( x + MONSTER_X_ADJUST, y, z );
+            dinosaurPosition = new THREE.Vector3( x, y + DINOSAUR_Y_ADJUST, z );
 
         let modelEuler = new THREE.Euler(0, this.state.modelRotation),
             modelQuaternion = new THREE.Quaternion().setFromEuler(modelEuler);
@@ -74,13 +73,13 @@ class SceneComponent extends React.Component {
             }
         );
 
-        let MonsterElement = React.createElement(
-            MonsterComponent,
+        let DinosaurElement = React.createElement(
+            DinosaurComponent,
             {
-                position: monsterPosition,
+                position: dinosaurPosition,
                 quaternion: modelQuaternion,
-                visible: (this.props.model === Constants.MODEL.MONSTER),
-                scale: 0.04
+                visible: (this.props.model === Constants.MODEL.DINOSAUR),
+                scale: 7
             }
         );
 
@@ -121,7 +120,7 @@ class SceneComponent extends React.Component {
             },
             CameraElement,
             RobotElement,
-            MonsterElement,
+            DinosaurElement,
             AmbientLight,
             DirectionalLight,
             SpotLight

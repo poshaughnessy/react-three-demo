@@ -1,7 +1,7 @@
 const Constants = {
     MODEL: {
         ROBOT: 'robot',
-        MONSTER: 'monster'
+        DINOSAUR: 'dinosaur'
     },
     ANIMATION: {
         FORWARDS_AND_BACK: 'forwards-and-back',
