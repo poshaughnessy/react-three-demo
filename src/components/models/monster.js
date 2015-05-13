@@ -26,7 +26,4 @@ class MonsterComponent extends ModelComponent {
 
 }
 
-
-console.log('MonsterComponent', MonsterComponent);
-
 export default MonsterComponent;

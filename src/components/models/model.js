@@ -10,6 +10,7 @@ class ModelComponent extends React.Component {
             geometry: this.geometry,
             material: this.material,
             position: this.props.position,
+            quaternion: this.props.quaternion,
             visible: this.props.visible,
             scale: this.props.scale
         });
@@ -21,6 +22,7 @@ class ModelComponent extends React.Component {
 ModelComponent.propTypes = {
     scale: React.PropTypes.number,
     position: React.PropTypes.instanceOf(THREE.Vector3),
+    quaternion: React.PropTypes.instanceOf(THREE.Quaternion),
     visible: React.PropTypes.bool
 };
 

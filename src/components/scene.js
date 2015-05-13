@@ -8,7 +8,7 @@ import MonsterComponent from './models/monster';
 const MODEL_Z_NEAR = 50;
 const MODEL_Z_FAR = 0;
 const MODEL_MOVE_RATE = 0.1;
-const MODEL_SPIN_RATE = 0.1;
+const MODEL_SPIN_RATE = 0.01;
 
 const ROBOT_Y_ADJUST = -10;
 const MONSTER_X_ADJUST = -40;
@@ -40,13 +40,16 @@ class SceneComponent extends React.Component {
 
     render() {
 
-        let x = this.state.modelPosition.x;
-        let y = this.state.modelPosition.y;
-        let z = this.state.modelPosition.z;
+        let x = this.state.modelPosition.x,
+            y = this.state.modelPosition.y,
+            z = this.state.modelPosition.z;
 
         // Adjust relative positions
-        let robotPosition = new THREE.Vector3( x, y + ROBOT_Y_ADJUST, z );
-        let monsterPosition = new THREE.Vector3( x + MONSTER_X_ADJUST, y, z );
+        let robotPosition = new THREE.Vector3( x, y + ROBOT_Y_ADJUST, z ),
+            monsterPosition = new THREE.Vector3( x + MONSTER_X_ADJUST, y, z );
+
+        let modelEuler = new THREE.Euler(0, this.state.modelRotation),
+            modelQuaternion = new THREE.Quaternion().setFromEuler(modelEuler);
 
         let CameraElement = React.createElement(
             ReactTHREE.PerspectiveCamera,   // type
@@ -65,7 +68,7 @@ class SceneComponent extends React.Component {
             RobotComponent,
             {
                 position: robotPosition,
-                quaternion: new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(), this.state.modelRotation),
+                quaternion: modelQuaternion,
                 visible: (this.props.model === Constants.MODEL.ROBOT),
                 scale: 8
             }
@@ -75,7 +78,7 @@ class SceneComponent extends React.Component {
             MonsterComponent,
             {
                 position: monsterPosition,
-                quaternion: new THREE.Quaternion(0, this.state.modelRotation, 0, 1),
+                quaternion: modelQuaternion,
                 visible: (this.props.model === Constants.MODEL.MONSTER),
                 scale: 0.04
             }

@@ -26,6 +26,4 @@ class RobotComponent extends ModelComponent {
 
 }
 
-console.log('RobotComponent', RobotComponent);
-
 export default RobotComponent;
