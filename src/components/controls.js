@@ -22,13 +22,15 @@ class ControlsComponent extends React.Component {
 
         return (
             <header>
+                <span className="group-label">Model:</span>
                 <RadioGroup name="model" className="radio-group" value={this.props.model} ref="modelGroup" onChange={this._onChangeModel}>
                     <input type="radio" id={Constants.MODEL.ROBOT} value={Constants.MODEL.ROBOT}/><label htmlFor={Constants.MODEL.ROBOT}>Robot</label>
                     <input type="radio" id={Constants.MODEL.DINOSAUR} value={Constants.MODEL.DINOSAUR}/><label htmlFor={Constants.MODEL.DINOSAUR}>Dinosaur</label>
                 </RadioGroup>
+                <span className="group-label">Spin:</span>
                 <RadioGroup name="animation" className="radio-group" value={this.props.animation} ref="animationGroup" onChange={this._onChangeAnimation}>
-                    <input type="radio" id={Constants.ANIMATION.FORWARDS_AND_BACK} value={Constants.ANIMATION.FORWARDS_AND_BACK}/><label htmlFor={Constants.ANIMATION.FORWARDS_AND_BACK}>Forwards and Back</label>
-                    <input type="radio" id={Constants.ANIMATION.SPIN} value={Constants.ANIMATION.SPIN}/><label htmlFor={Constants.ANIMATION.SPIN}>Spin</label>
+                    <input type="radio" id={Constants.ANIMATION.SPIN_LEFT} value={Constants.ANIMATION.SPIN_LEFT}/><label htmlFor={Constants.ANIMATION.SPIN_LEFT}>Left</label>
+                    <input type="radio" id={Constants.ANIMATION.SPIN_RIGHT} value={Constants.ANIMATION.SPIN_RIGHT}/><label htmlFor={Constants.ANIMATION.SPIN_RIGHT}>Right</label>
                 </RadioGroup>
             </header>
         );

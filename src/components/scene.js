@@ -5,10 +5,7 @@ import Constants from '../constants';
 import RobotComponent from './models/robot';
 import DinosaurComponent from './models/dinosaur';
 
-const MODEL_Z_NEAR = 50,
-      MODEL_Z_FAR = 0,
-      MODEL_MOVE_RATE = 0.1,
-      MODEL_SPIN_RATE = 0.01,
+const MODEL_SPIN_RATE = 0.01,
       ROBOT_Y_ADJUST = -10,
       DINOSAUR_Y_ADJUST = 20;
 
@@ -26,7 +23,6 @@ class SceneComponent extends React.Component {
         this.modelMovingForwards = true;
 
         this._animate = this._animate.bind(this);
-        this._animateForwardsAndBack = this._animateForwardsAndBack.bind(this);
         this._animateSpin = this._animateSpin.bind(this);
     }
 
@@ -129,11 +125,8 @@ class SceneComponent extends React.Component {
 
     _animate() {
 
-        if (this.props.animation === Constants.ANIMATION.FORWARDS_AND_BACK) {
-
-            this._animateForwardsAndBack();
-
-        } else if (this.props.animation === Constants.ANIMATION.SPIN) {
+        if( this.props.animation === Constants.ANIMATION.SPIN_LEFT ||
+            this.props.animation === Constants.ANIMATION.SPIN_RIGHT ) {
 
             this._animateSpin();
 
@@ -143,6 +136,7 @@ class SceneComponent extends React.Component {
 
     }
 
+    /*
     _animateForwardsAndBack() {
 
         let modelZ = this.state.modelPosition.z;
@@ -171,10 +165,12 @@ class SceneComponent extends React.Component {
 
 
     }
+    */
 
     _animateSpin() {
 
-        this.setState({modelRotation: this.state.modelRotation + MODEL_SPIN_RATE});
+        this.setState({modelRotation: this.state.modelRotation +
+            (this.props.animation === Constants.ANIMATION.SPIN_LEFT ? MODEL_SPIN_RATE : -MODEL_SPIN_RATE)});
 
     }
 
