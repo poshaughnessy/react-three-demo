@@ -6,8 +6,8 @@ import RobotComponent from './models/robot';
 import DinosaurComponent from './models/dinosaur';
 
 const MODEL_SPIN_RATE = 0.01,
-      ROBOT_Y_ADJUST = -10,
-      DINOSAUR_Y_ADJUST = 20;
+      ROBOT_Y = -25,
+      DINOSAUR_Y = 5;
 
 class SceneComponent extends React.Component {
 
@@ -16,7 +16,7 @@ class SceneComponent extends React.Component {
         super(props);
 
         this.state = {
-            modelPosition: new THREE.Vector3(0,-20,0),
+            modelPosition: new THREE.Vector3(0,0,0),
             modelRotation: 0
         };
 
@@ -40,8 +40,8 @@ class SceneComponent extends React.Component {
             z = this.state.modelPosition.z;
 
         // Adjust relative positions
-        let robotPosition = new THREE.Vector3( x, y + ROBOT_Y_ADJUST, z ),
-            dinosaurPosition = new THREE.Vector3( x, y + DINOSAUR_Y_ADJUST, z );
+        let robotPosition = new THREE.Vector3( x, ROBOT_Y, z ),
+            dinosaurPosition = new THREE.Vector3( x, DINOSAUR_Y, z );
 
         let modelEuler = new THREE.Euler(0, this.state.modelRotation),
             modelQuaternion = new THREE.Quaternion().setFromEuler(modelEuler);
@@ -54,7 +54,7 @@ class SceneComponent extends React.Component {
                 aspect: window.innerWidth / window.innerHeight,
                 near: 1,
                 far: 1000,
-                position: new THREE.Vector3(0, 0, 100),
+                position: new THREE.Vector3(0, 0, 50),
                 lookat: new THREE.Vector3(0, 0, 0)
             }
         );
@@ -65,7 +65,7 @@ class SceneComponent extends React.Component {
                 position: robotPosition,
                 quaternion: modelQuaternion,
                 visible: (this.props.model === Constants.MODEL.ROBOT),
-                scale: 8
+                scale: 7
             }
         );
 
@@ -75,7 +75,7 @@ class SceneComponent extends React.Component {
                 position: dinosaurPosition,
                 quaternion: modelQuaternion,
                 visible: (this.props.model === Constants.MODEL.DINOSAUR),
-                scale: 7
+                scale: 8
             }
         );
 
@@ -162,7 +162,6 @@ class SceneComponent extends React.Component {
             }
 
         }
-
 
     }
     */
