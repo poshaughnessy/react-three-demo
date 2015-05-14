@@ -44,7 +44,7 @@
     "express": "~4.12.3",
     "react": "~0.13.1",
     "react-radio-group": "^1.1.0",
-    "react-three": "git://github.com/Izzimach/react-three.git#dev"
+    "react-three": "git://github.com/Izzimach/react-three.git"
   },
   "engines": {
     "iojs": "1.7.x"

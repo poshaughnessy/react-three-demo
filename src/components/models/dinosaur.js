@@ -18,7 +18,7 @@ class DinosaurComponent extends ModelComponent {
             console.log('Loaded dinosaur', geometry, materials);
 
             this.geometry = geometry;
-            this.material = materials[0];
+            this.material = new THREE.MeshFaceMaterial( materials );
 
         });
 

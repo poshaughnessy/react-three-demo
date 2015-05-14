@@ -23,6 +23,7 @@ class ControlsComponent extends React.Component {
         return (
             <header>
                 <RadioGroup name="model" className="radio-group" value={this.props.model} ref="modelGroup" onChange={this._onChangeModel}>
+                    <input type="radio" id={Constants.MODEL.KNIGHT} value={Constants.MODEL.KNIGHT}/><label htmlFor={Constants.MODEL.KNIGHT}>Knight</label>
                     <input type="radio" id={Constants.MODEL.ROBOT} value={Constants.MODEL.ROBOT}/><label htmlFor={Constants.MODEL.ROBOT}>Robot</label>
                     <input type="radio" id={Constants.MODEL.DINOSAUR} value={Constants.MODEL.DINOSAUR}/><label htmlFor={Constants.MODEL.DINOSAUR}>Dinosaur</label>
                 </RadioGroup>

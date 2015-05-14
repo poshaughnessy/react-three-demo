@@ -1,5 +1,6 @@
 const Constants = {
     MODEL: {
+        KNIGHT: 'knight',
         ROBOT: 'robot',
         DINOSAUR: 'dinosaur'
     },

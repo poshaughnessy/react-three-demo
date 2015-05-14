@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTHREE from 'react-three';
 import THREE from 'three';
 import Constants from '../constants';
+import KnightComponent from './models/knight';
 import RobotComponent from './models/robot';
 import DinosaurComponent from './models/dinosaur';
 
@@ -11,6 +12,9 @@ const MODEL_Z_NEAR = 50,
       MODEL_SPIN_RATE = 0.01,
       ROBOT_Y_ADJUST = -10,
       DINOSAUR_Y_ADJUST = 20;
+
+let clock,
+    modelMovingForwards = true;
 
 class SceneComponent extends React.Component {
 
@@ -23,7 +27,9 @@ class SceneComponent extends React.Component {
             modelRotation: 0
         };
 
-        this.modelMovingForwards = true;
+        modelMovingForwards = true;
+
+        clock = new THREE.Clock();
 
         this._animate = this._animate.bind(this);
         this._animateForwardsAndBack = this._animateForwardsAndBack.bind(this);
@@ -63,6 +69,23 @@ class SceneComponent extends React.Component {
             }
         );
 
+        let KnightElement = React.createElement(
+            KnightComponent,
+            {
+                position: robotPosition,
+                quaternion: modelQuaternion,
+                visible: (this.props.model === Constants.MODEL.KNIGHT),
+                scale: 6
+            }
+        );
+
+        let SkeletonHelperElement = React.createElement(
+            THREE.SkeletonHelper,
+            {
+                visible: true
+            }
+        )
+
         let RobotElement = React.createElement(
             RobotComponent,
             {
@@ -79,7 +102,7 @@ class SceneComponent extends React.Component {
                 position: dinosaurPosition,
                 quaternion: modelQuaternion,
                 visible: (this.props.model === Constants.MODEL.DINOSAUR),
-                scale: 7
+                scale: 20
             }
         );
 
@@ -119,6 +142,7 @@ class SceneComponent extends React.Component {
                 background: 0xEEEEEE
             },
             CameraElement,
+            KnightElement,
             RobotElement,
             DinosaurElement,
             AmbientLight,
@@ -128,6 +152,8 @@ class SceneComponent extends React.Component {
     }
 
     _animate() {
+
+        THREE.AnimationHandler.update( clock.getDelta() );
 
         if (this.props.animation === Constants.ANIMATION.FORWARDS_AND_BACK) {
 
@@ -147,14 +173,14 @@ class SceneComponent extends React.Component {
 
         let modelZ = this.state.modelPosition.z;
 
-        if( this.modelMovingForwards ) {
+        if( modelMovingForwards ) {
 
             if( modelZ < MODEL_Z_NEAR ) {
                 let newPos = this.state.modelPosition;
                 newPos.z += MODEL_MOVE_RATE;
                 this.setState({modelPosition: newPos});
             } else {
-                this.modelMovingForwards = false;
+                modelMovingForwards = false;
             }
 
         } else {
@@ -164,7 +190,7 @@ class SceneComponent extends React.Component {
                 newPos.z -= MODEL_MOVE_RATE;
                 this.setState({modelPosition: newPos});
             } else {
-                this.modelMovingForwards = true;
+                modelMovingForwards = true;
             }
 
         }

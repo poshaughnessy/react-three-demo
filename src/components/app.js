@@ -11,8 +11,8 @@ class AppComponent extends React.Component {
 
         // TODO consider switching to an events system so Controls can notify and Scene listen directly!
         this.state = {
-            model: Constants.MODEL.ROBOT,
-            animation: Constants.ANIMATION.FORWARDS_AND_BACK
+            model: Constants.MODEL.KNIGHT,
+            animation: Constants.ANIMATION.SPIN
         };
 
         this._onChangeModel = this._onChangeModel.bind(this);
