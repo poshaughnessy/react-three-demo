@@ -9,7 +9,7 @@ class RobotRetroComponent extends ModelComponent {
 
         super(props);
 
-        this.displayName = 'Robot';
+        this.displayName = 'Retro Robot';
 
         let loader = new THREE.JSONLoader();
 
