@@ -5,11 +5,13 @@ import ControlsComponent from './controls';
 import SceneComponent from './scene';
 import Constants from '../constants';
 
+/**
+ * TODO consider switching to an events system so Controls can notify and Scene listen directly
+ */
 class AppComponent extends React.Component {
 
     constructor() {
 
-        // TODO consider switching to an events system so Controls can notify and Scene listen directly!
         this.state = {
             model: Constants.MODEL.ROBOT_ROBBY,
             animation: Constants.ANIMATION.SPIN_LEFT
