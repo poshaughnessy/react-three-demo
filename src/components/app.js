@@ -11,7 +11,7 @@ class AppComponent extends React.Component {
 
         // TODO consider switching to an events system so Controls can notify and Scene listen directly!
         this.state = {
-            model: Constants.MODEL.ROBOT,
+            model: Constants.MODEL.ROBOT_ROBBY,
             animation: Constants.ANIMATION.SPIN_LEFT
         };
 

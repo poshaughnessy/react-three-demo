@@ -3,7 +3,7 @@ import ReactTHREE from 'react-three';
 import THREE from 'three';
 import ModelComponent from './model';
 
-class RobotComponent extends ModelComponent {
+class RobotRobbyComponent extends ModelComponent {
 
     constructor(props) {
 
@@ -15,7 +15,7 @@ class RobotComponent extends ModelComponent {
 
         loader.load('/models/robby/RobbyTheRobot_FanArt.js', (geometry, materials) => {
 
-            console.log('Loaded robot', geometry, materials);
+            console.log('Loaded Robby robot', geometry, materials);
 
             this.geometry = geometry;
             this.material = new THREE.MeshFaceMaterial( materials );
@@ -26,4 +26,4 @@ class RobotComponent extends ModelComponent {
 
 }
 
-export default RobotComponent;
+export default RobotRobbyComponent;

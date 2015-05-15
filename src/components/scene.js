@@ -2,12 +2,12 @@ import React from 'react';
 import ReactTHREE from 'react-three';
 import THREE from 'three';
 import Constants from '../constants';
-import RobotComponent from './models/robot';
-import DinosaurComponent from './models/dinosaur';
+import RobotRobbyComponent from './models/robotRobby';
+import RobotRetroComponent from './models/robotRetro';
 
 const MODEL_SPIN_RATE = 0.01,
-      ROBOT_Y = -25,
-      DINOSAUR_Y = 5;
+      ROBOT_ROBBY_Y = -25,
+      ROBOT_RETRO_Y = -25;
 
 class SceneComponent extends React.Component {
 
@@ -19,8 +19,6 @@ class SceneComponent extends React.Component {
             modelPosition: new THREE.Vector3(0,0,0),
             modelRotation: 0
         };
-
-        this.modelMovingForwards = true;
 
         this._animate = this._animate.bind(this);
         this._animateSpin = this._animateSpin.bind(this);
@@ -40,8 +38,8 @@ class SceneComponent extends React.Component {
             z = this.state.modelPosition.z;
 
         // Adjust relative positions
-        let robotPosition = new THREE.Vector3( x, ROBOT_Y, z ),
-            dinosaurPosition = new THREE.Vector3( x, DINOSAUR_Y, z );
+        let robotRobbyPosition = new THREE.Vector3( x, ROBOT_ROBBY_Y, z ),
+            robotRetroPosition = new THREE.Vector3( x, ROBOT_RETRO_Y, z );
 
         let modelEuler = new THREE.Euler(0, this.state.modelRotation),
             modelQuaternion = new THREE.Quaternion().setFromEuler(modelEuler);
@@ -59,22 +57,22 @@ class SceneComponent extends React.Component {
             }
         );
 
-        let RobotElement = React.createElement(
-            RobotComponent,
+        let RobotRobbyElement = React.createElement(
+            RobotRobbyComponent,
             {
-                position: robotPosition,
+                position: robotRobbyPosition,
                 quaternion: modelQuaternion,
-                visible: (this.props.model === Constants.MODEL.ROBOT),
+                visible: (this.props.model === Constants.MODEL.ROBOT_ROBBY),
                 scale: 7
             }
         );
 
-        let DinosaurElement = React.createElement(
-            DinosaurComponent,
+        let RobotRetroElement = React.createElement(
+            RobotRetroComponent,
             {
-                position: dinosaurPosition,
+                position: robotRetroPosition,
                 quaternion: modelQuaternion,
-                visible: (this.props.model === Constants.MODEL.DINOSAUR),
+                visible: (this.props.model === Constants.MODEL.ROBOT_RETRO),
                 scale: 8
             }
         );
@@ -115,8 +113,8 @@ class SceneComponent extends React.Component {
                 background: 0xEEEEEE
             },
             CameraElement,
-            RobotElement,
-            DinosaurElement,
+            RobotRobbyElement,
+            RobotRetroElement,
             AmbientLight,
             DirectionalLight,
             SpotLight
@@ -135,36 +133,6 @@ class SceneComponent extends React.Component {
         requestAnimationFrame(this._animate);
 
     }
-
-    /*
-    _animateForwardsAndBack() {
-
-        let modelZ = this.state.modelPosition.z;
-
-        if( this.modelMovingForwards ) {
-
-            if( modelZ < MODEL_Z_NEAR ) {
-                let newPos = this.state.modelPosition;
-                newPos.z += MODEL_MOVE_RATE;
-                this.setState({modelPosition: newPos});
-            } else {
-                this.modelMovingForwards = false;
-            }
-
-        } else {
-
-            if( modelZ > MODEL_Z_FAR ) {
-                let newPos = this.state.modelPosition;
-                newPos.z -= MODEL_MOVE_RATE;
-                this.setState({modelPosition: newPos});
-            } else {
-                this.modelMovingForwards = true;
-            }
-
-        }
-
-    }
-    */
 
     _animateSpin() {
 
