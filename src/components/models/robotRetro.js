@@ -3,7 +3,7 @@ import ReactTHREE from 'react-three';
 import THREE from 'three';
 import ModelComponent from './model';
 
-class RobotRadarComponent extends ModelComponent {
+class RobotRetroComponent extends ModelComponent {
 
     constructor(props) {
 
@@ -15,7 +15,7 @@ class RobotRadarComponent extends ModelComponent {
 
         loader.load('/models/retro-robot/retro_robot.js', (geometry, materials) => {
 
-            console.log('Loaded Radar robot', geometry, materials);
+            console.log('Loaded Retro robot', geometry, materials);
 
             this.geometry = geometry;
             this.material = new THREE.MeshFaceMaterial( materials );
@@ -26,4 +26,4 @@ class RobotRadarComponent extends ModelComponent {
 
 }
 
-export default RobotRadarComponent;
+export default RobotRetroComponent;
