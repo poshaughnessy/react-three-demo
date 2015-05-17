@@ -5,8 +5,7 @@ import Constants from '../constants';
 import RobotRobbyComponent from './models/robotRobby';
 import RobotMechComponent from './models/robotMech';
 
-const MODEL_SPIN_RATE = 0.01,
-      ROBOT_ROBBY_Y = -25,
+const ROBOT_ROBBY_Y = -25,
       ROBOT_MECH_Y = 0;
 
 class SceneComponent extends React.Component {
@@ -127,8 +126,10 @@ class SceneComponent extends React.Component {
 
     _animateSpin() {
 
+        let spinAmount = this.props.spinSpeed * Constants.SPIN_SPEED_MULTIPLIER;
+
         this.setState({modelRotation: this.state.modelRotation +
-            (this.props.animation === Constants.ANIMATION.SPIN_LEFT ? MODEL_SPIN_RATE : -MODEL_SPIN_RATE)});
+            (this.props.animation === Constants.ANIMATION.SPIN_LEFT ? spinAmount : -spinAmount)});
 
     }
 

@@ -13,6 +13,7 @@ class ControlsComponent extends React.Component {
 
         this._onChangeModel = this._onChangeModel.bind(this);
         this._onChangeAnimation = this._onChangeAnimation.bind(this);
+        this._onChangeSpinSpeed = this._onChangeSpinSpeed.bind(this);
 
     }
 
@@ -32,6 +33,8 @@ class ControlsComponent extends React.Component {
                     <input type="radio" id={Constants.ANIMATION.SPIN_LEFT} value={Constants.ANIMATION.SPIN_LEFT}/><label htmlFor={Constants.ANIMATION.SPIN_LEFT}>Left</label>
                     <input type="radio" id={Constants.ANIMATION.SPIN_RIGHT} value={Constants.ANIMATION.SPIN_RIGHT}/><label htmlFor={Constants.ANIMATION.SPIN_RIGHT}>Right</label>
                 </RadioGroup>
+                <span className="group-label">Spin Speed:</span>
+                <input type="range" min="0" max={Constants.SPIN_SPEED_MAX} value={this.props.spinSpeed} ref="spinSpeed" onInput={this._onChangeSpinSpeed}/>
             </header>
         );
 
@@ -52,6 +55,17 @@ class ControlsComponent extends React.Component {
         console.log(animation);
 
         this.props.onChangeAnimation(animation);
+
+    }
+
+    _onChangeSpinSpeed(e) {
+
+        console.log('on change spin speed', e);
+
+        var spinSpeed = e.target.value;
+        console.log(spinSpeed);
+
+        this.props.onChangeSpinSpeed(spinSpeed);
 
     }
 

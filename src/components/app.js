@@ -14,11 +14,13 @@ class AppComponent extends React.Component {
 
         this.state = {
             model: Constants.MODEL.ROBOT_ROBBY,
-            animation: Constants.ANIMATION.SPIN_LEFT
+            animation: Constants.ANIMATION.SPIN_LEFT,
+            spinSpeed: Constants.SPIN_SPEED_DEFAULT
         };
 
         this._onChangeModel = this._onChangeModel.bind(this);
         this._onChangeAnimation = this._onChangeAnimation.bind(this);
+        this._onChangeSpinSpeed = this._onChangeSpinSpeed.bind(this);
 
     }
 
@@ -29,8 +31,8 @@ class AppComponent extends React.Component {
 
         return (
             <div>
-                <ControlsComponent model={this.state.model} animation={this.state.animation} onChangeModel={this._onChangeModel} onChangeAnimation={this._onChangeAnimation}/>
-                <SceneComponent model={this.state.model} animation={this.state.animation}/>
+                <ControlsComponent model={this.state.model} animation={this.state.animation} spinSpeed={this.state.spinSpeed} onChangeModel={this._onChangeModel} onChangeAnimation={this._onChangeAnimation} onChangeSpinSpeed={this._onChangeSpinSpeed}/>
+                <SceneComponent model={this.state.model} animation={this.state.animation} spinSpeed={this.state.spinSpeed}/>
             </div>
         );
 
@@ -45,6 +47,14 @@ class AppComponent extends React.Component {
     _onChangeAnimation(animation) {
 
         this.setState({animation: animation});
+
+    }
+
+    _onChangeSpinSpeed(spinSpeed) {
+
+        console.log('on change spin speed', spinSpeed);
+
+        this.setState({spinSpeed: spinSpeed});
 
     }
 
