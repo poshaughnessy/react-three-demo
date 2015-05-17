@@ -7,4 +7,4 @@ More information coming soon...
 ## Credits
 
 * Robby the Robot model by [Planemo](http://www.blendswap.com/user/planemo), [CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/)
-* Little Robot model by [Jack73](http://www.blendswap.com/user/Jack73), [CC-BY](http://creativecommons.org/licenses/by/3.0/)
+* Mech Robot model by [mirov777](http://www.blendswap.com/user/mirov777), [CC Zero](http://creativecommons.org/publicdomain/zero/1.0/)

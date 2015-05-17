@@ -25,7 +25,7 @@ class ControlsComponent extends React.Component {
                 <span className="group-label">Robot:</span>
                 <RadioGroup name="model" className="radio-group" value={this.props.model} ref="modelGroup" onChange={this._onChangeModel}>
                     <input type="radio" id={Constants.MODEL.ROBOT_ROBBY} value={Constants.MODEL.ROBOT_ROBBY}/><label htmlFor={Constants.MODEL.ROBOT_ROBBY}>Robby</label>
-                    <input type="radio" id={Constants.MODEL.ROBOT_LITTLE} value={Constants.MODEL.ROBOT_LITTLE}/><label htmlFor={Constants.MODEL.ROBOT_LITTLE}>Little</label>
+                    <input type="radio" id={Constants.MODEL.ROBOT_MECH} value={Constants.MODEL.ROBOT_MECH}/><label htmlFor={Constants.MODEL.ROBOT_MECH}>Mech</label>
                 </RadioGroup>
                 <span className="group-label">Spin:</span>
                 <RadioGroup name="animation" className="radio-group" value={this.props.animation} ref="animationGroup" onChange={this._onChangeAnimation}>

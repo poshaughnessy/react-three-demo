@@ -3,7 +3,7 @@ import ReactTHREE from 'react-three';
 import THREE from 'three';
 import Constants from '../constants';
 import RobotRobbyComponent from './models/robotRobby';
-import RobotLittleComponent from './models/robotLittle';
+import RobotMechComponent from './models/robotMech';
 
 const MODEL_SPIN_RATE = 0.01,
       ROBOT_ROBBY_Y = -25,
@@ -39,7 +39,7 @@ class SceneComponent extends React.Component {
 
         // Adjust relative positions
         let robotRobbyPosition = new THREE.Vector3( x, ROBOT_ROBBY_Y, z ),
-            robotLittlePosition = new THREE.Vector3( x, ROBOT_LITTLE_Y, z );
+            robotMechPosition = new THREE.Vector3( x, ROBOT_LITTLE_Y, z );
 
         let modelEuler = new THREE.Euler(0, this.state.modelRotation),
             modelQuaternion = new THREE.Quaternion().setFromEuler(modelEuler);
@@ -67,13 +67,13 @@ class SceneComponent extends React.Component {
             }
         );
 
-        let RobotLittleElement = React.createElement(
-            RobotLittleComponent,
+        let RobotMechElement = React.createElement(
+            RobotMechComponent,
             {
-                position: robotLittlePosition,
+                position: robotMechPosition,
                 quaternion: modelQuaternion,
                 visible: (this.props.model === Constants.MODEL.ROBOT_LITTLE),
-                scale: 8
+                scale: 5
             }
         );
 
@@ -114,7 +114,7 @@ class SceneComponent extends React.Component {
             },
             CameraElement,
             RobotRobbyElement,
-            RobotLittleElement,
+            RobotMechElement,
             AmbientLight,
             DirectionalLight,
             SpotLight

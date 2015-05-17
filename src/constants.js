@@ -1,7 +1,7 @@
 const Constants = {
     MODEL: {
         ROBOT_ROBBY: 'robot-robby',
-        ROBOT_LITTLE: 'robot-little'
+        ROBOT_MECH: 'robot-mech'
     },
     ANIMATION: {
         SPIN_LEFT: 'spin-left',
