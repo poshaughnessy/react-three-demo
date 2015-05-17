@@ -82,7 +82,6 @@ class SceneComponent extends React.Component {
             {
                 color: new THREE.Color(0x333333),
                 intensity: 0.5,
-                position: new THREE.Vector3(0, 0, 600),
                 target: new THREE.Vector3(0, 0, 0)
             }
         );
@@ -93,13 +92,6 @@ class SceneComponent extends React.Component {
                 color: new THREE.Color(0xFFFFFF),
                 intensity: 1.5,
                 position: new THREE.Vector3(0, 0, 60)
-            }
-        );
-
-        let SpotLight = React.createElement(
-            ReactTHREE.SpotLight,
-            {
-                position: new THREE.Vector3(0, 0, 100)
             }
         );
 
@@ -116,8 +108,7 @@ class SceneComponent extends React.Component {
             RobotRobbyElement,
             RobotMechElement,
             AmbientLight,
-            DirectionalLight,
-            SpotLight
+            DirectionalLight
         )
     }
 
