@@ -7,7 +7,7 @@ import RobotMechComponent from './models/robotMech';
 
 const MODEL_SPIN_RATE = 0.01,
       ROBOT_ROBBY_Y = -25,
-      ROBOT_LITTLE_Y = 0;
+      ROBOT_MECH_Y = 0;
 
 class SceneComponent extends React.Component {
 
@@ -39,7 +39,7 @@ class SceneComponent extends React.Component {
 
         // Adjust relative positions
         let robotRobbyPosition = new THREE.Vector3( x, ROBOT_ROBBY_Y, z ),
-            robotMechPosition = new THREE.Vector3( x, ROBOT_LITTLE_Y, z );
+            robotMechPosition = new THREE.Vector3( x, ROBOT_MECH_Y, z );
 
         let modelEuler = new THREE.Euler(0, this.state.modelRotation),
             modelQuaternion = new THREE.Quaternion().setFromEuler(modelEuler);
@@ -72,7 +72,7 @@ class SceneComponent extends React.Component {
             {
                 position: robotMechPosition,
                 quaternion: modelQuaternion,
-                visible: (this.props.model === Constants.MODEL.ROBOT_LITTLE),
+                visible: (this.props.model === Constants.MODEL.ROBOT_MECH),
                 scale: 5
             }
         );
