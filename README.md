@@ -6,9 +6,9 @@ A React + Three.js demo of a robot model viewer, using [react-three](https://git
 
 After checking out:
 
-* npm install
-* npm install -g gulp # Install gulp if you haven't already
-* gulp serve
+* `npm install`
+* `npm install -g gulp` # Install gulp if you haven't already
+* `gulp serve`
 * Take a look at [localhost:8000](http://localhost:8000)
 
 ## Hosted version (recommended only on a good network connection!)
