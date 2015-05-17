@@ -3,11 +3,11 @@ import ReactTHREE from 'react-three';
 import THREE from 'three';
 import Constants from '../constants';
 import RobotRobbyComponent from './models/robotRobby';
-import RobotRetroComponent from './models/robotRetro';
+import RobotLittleComponent from './models/robotLittle';
 
 const MODEL_SPIN_RATE = 0.01,
       ROBOT_ROBBY_Y = -25,
-      ROBOT_RETRO_Y = -25;
+      ROBOT_LITTLE_Y = 0;
 
 class SceneComponent extends React.Component {
 
@@ -39,7 +39,7 @@ class SceneComponent extends React.Component {
 
         // Adjust relative positions
         let robotRobbyPosition = new THREE.Vector3( x, ROBOT_ROBBY_Y, z ),
-            robotRetroPosition = new THREE.Vector3( x, ROBOT_RETRO_Y, z );
+            robotLittlePosition = new THREE.Vector3( x, ROBOT_LITTLE_Y, z );
 
         let modelEuler = new THREE.Euler(0, this.state.modelRotation),
             modelQuaternion = new THREE.Quaternion().setFromEuler(modelEuler);
@@ -67,12 +67,12 @@ class SceneComponent extends React.Component {
             }
         );
 
-        let RobotRetroElement = React.createElement(
-            RobotRetroComponent,
+        let RobotLittleElement = React.createElement(
+            RobotLittleComponent,
             {
-                position: robotRetroPosition,
+                position: robotLittlePosition,
                 quaternion: modelQuaternion,
-                visible: (this.props.model === Constants.MODEL.ROBOT_RETRO),
+                visible: (this.props.model === Constants.MODEL.ROBOT_LITTLE),
                 scale: 8
             }
         );
@@ -114,7 +114,7 @@ class SceneComponent extends React.Component {
             },
             CameraElement,
             RobotRobbyElement,
-            RobotRetroElement,
+            RobotLittleElement,
             AmbientLight,
             DirectionalLight,
             SpotLight

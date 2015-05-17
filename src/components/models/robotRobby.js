@@ -13,7 +13,7 @@ class RobotRobbyComponent extends ModelComponent {
 
         let loader = new THREE.JSONLoader();
 
-        loader.load('/models/robby/RobbyTheRobot_FanArt.js', (geometry, materials) => {
+        loader.load('/models/robby-robot/RobbyTheRobot_FanArt.js', (geometry, materials) => {
 
             console.log('Loaded Robby robot', geometry, materials);
 
