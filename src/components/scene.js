@@ -36,8 +36,8 @@ class SceneComponent extends React.Component {
             z = this.state.modelPosition.z;
 
         // Adjust relative positions
-        let robotRobbyPosition = new THREE.Vector3( x, ROBOT_ROBBY_Y, z ),
-            robotMechPosition = new THREE.Vector3( x, ROBOT_MECH_Y, z );
+        let robotRobbyPosition = new THREE.Vector3( x, y + ROBOT_ROBBY_Y, z ),
+            robotMechPosition = new THREE.Vector3( x, y + ROBOT_MECH_Y, z );
 
         let modelEuler = new THREE.Euler(0, this.state.modelRotation),
             modelQuaternion = new THREE.Quaternion().setFromEuler(modelEuler);
