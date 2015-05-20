@@ -1,11 +1,11 @@
 const Constants = {
-    MODEL: {
-        ROBOT_ROBBY: 'robot-robby',
-        ROBOT_MECH: 'robot-mech'
+    ROBOT: {
+        ROBBY: 'robby',
+        MECH: 'mech'
     },
-    ANIMATION: {
-        SPIN_LEFT: 'spin-left',
-        SPIN_RIGHT: 'spin-right'
+    SPIN: {
+        LEFT: 'left',
+        RIGHT: 'right'
     },
     SPIN_SPEED_DEFAULT: 30,
     SPIN_SPEED_MAX: 100,

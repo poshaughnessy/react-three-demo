@@ -20,7 +20,6 @@ class SceneComponent extends React.Component {
         };
 
         this._animate = this._animate.bind(this);
-        this._animateSpin = this._animateSpin.bind(this);
     }
 
     componentDidMount() {
@@ -61,7 +60,7 @@ class SceneComponent extends React.Component {
             {
                 position: robotRobbyPosition,
                 quaternion: modelQuaternion,
-                visible: (this.props.model === Constants.MODEL.ROBOT_ROBBY),
+                visible: (this.props.robot === Constants.ROBOT.ROBBY),
                 scale: 7
             }
         );
@@ -71,7 +70,7 @@ class SceneComponent extends React.Component {
             {
                 position: robotMechPosition,
                 quaternion: modelQuaternion,
-                visible: (this.props.model === Constants.MODEL.ROBOT_MECH),
+                visible: (this.props.robot === Constants.ROBOT.MECH),
                 scale: 5
             }
         );
@@ -113,23 +112,12 @@ class SceneComponent extends React.Component {
 
     _animate() {
 
-        if( this.props.animation === Constants.ANIMATION.SPIN_LEFT ||
-            this.props.animation === Constants.ANIMATION.SPIN_RIGHT ) {
-
-            this._animateSpin();
-
-        }
-
-        requestAnimationFrame(this._animate);
-
-    }
-
-    _animateSpin() {
-
         let spinAmount = this.props.spinSpeed * Constants.SPIN_SPEED_MULTIPLIER;
 
         this.setState({modelRotation: this.state.modelRotation +
-            (this.props.animation === Constants.ANIMATION.SPIN_LEFT ? spinAmount : -spinAmount)});
+        (this.props.spinDirection === Constants.SPIN.LEFT ? spinAmount : -spinAmount)});
+
+        requestAnimationFrame(this._animate);
 
     }
 
