@@ -1,8 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import AppComponent from './components/app';
 import THREE from 'three';
 
-React.render(
+ReactDOM.render(
     React.createElement( AppComponent ),
     document.getElementById('app')
 );

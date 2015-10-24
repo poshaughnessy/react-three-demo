@@ -9,6 +9,8 @@ class AppComponent extends React.Component {
 
     constructor() {
 
+        super();
+
         this.state = {
             robot: Constants.ROBOT.MECH,
             spinDirection: Constants.SPIN.LEFT,

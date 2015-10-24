@@ -1,14 +1,3 @@
-/**
- * NB. The gulpfile isn't ES6 yet - looks like we need to wait for Gulp v0.4:
- * https://github.com/gulpjs/gulp/issues/830
- */
-
-// Enable ES6 - this will make it automatically transpile required files. See: http://babeljs.io/docs/usage/require/
-require('babel/register');
-
-// TEMP fix for this issue: https://github.com/babel/babel/issues/489
-Object.getPrototypeOf.toString = function() {return Object.toString();};
-
 var _ = require('lodash'),
     gulp = require('gulp'),
     buffer = require('vinyl-buffer'),

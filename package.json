@@ -1,6 +1,6 @@
 {
   "name": "react-three-demo",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Demo of react-three",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "author": "Peter O'Shaughnessy <peter.oshaughnessy@gmail.com> (http://www.peteroshaughnessy.com)",
   "license": "MIT",
   "scripts": {
-    "start": "iojs runServer",
+    "start": "node runServer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "browserify-shim": "browserify-shim-config.js",
@@ -19,34 +19,35 @@
     ]
   },
   "devDependencies": {
-    "babelify": "~5.0.4",
-    "browser-pack": "~4.0.1",
-    "browserify": "~9.0.3",
-    "browserify-shim": "^3.8.3",
-    "deps-sort": "~1.3.5",
-    "gulp": "~3.8.11",
-    "gulp-babel": "~4.0.0",
-    "gulp-concat": "~2.5.2",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "~1.3.3",
-    "gulp-sourcemaps": "~1.5.1",
-    "gulp-uglify": "^1.1.0",
-    "gulp-util": "^3.0.4",
-    "lodash": "^3.6.0",
-    "module-deps": "~3.7.3",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.1.0",
-    "three": "~0.70.1"
   },
   "dependencies": {
-    "babel": "^4.7.16",
-    "express": "~4.12.3",
-    "react": "~0.13.1",
-    "react-radio-group": "^1.1.0",
-    "react-three": "git://github.com/Izzimach/react-three.git#dev"
+    "babel": "^5.8.29",
+    "babelify": "~6.4.0",
+    "browser-pack": "~5.0.1",
+    "browserify": "~11.2.0",
+    "browserify-shim": "^3.8.10",
+    "deps-sort": "~1.3.9",
+    "express": "~4.13.3",
+    "gulp": "~3.9.0",
+    "gulp-concat": "~2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "~2.0.4",
+    "gulp-sourcemaps": "~1.6.0",
+    "gulp-uglify": "^1.4.2",
+    "gulp-util": "^3.0.7",
+    "lodash": "^3.10.1",
+    "module-deps": "~3.7.3",
+    "once": "^1.3.2",
+    "react": "~0.14.0",
+    "react-dom": "^0.14.0",
+    "react-radio-group": "^2.1.1",
+    "react-three": "~0.7.2",
+    "three": "~0.72.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.4.0"
   },
   "engines": {
-    "iojs": "1.7.x"
+    "node": ">=4.0"
   }
 }
